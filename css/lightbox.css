@@ -1,0 +1,134 @@
+/* ============================================
+   NANI BARAL — Lightbox Gallery Styles
+   ============================================ */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lightbox.active .lightbox-content {
+  transform: scale(1);
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  border: 4px solid var(--clr-white);
+}
+
+.lightbox-caption {
+  margin-top: var(--sp-md);
+  text-align: center;
+  color: var(--clr-white);
+}
+
+.lightbox-caption h3 {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.lightbox-caption p {
+  font-size: var(--fs-sm);
+  color: var(--clr-blue-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--clr-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  z-index: 2001;
+}
+
+.lightbox-close:hover {
+  background: var(--clr-blue);
+  border-color: transparent;
+  transform: scale(1.1);
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: var(--clr-blue);
+  border-color: transparent;
+  transform: translateY(-50%) scale(1.1);
+}
+@media (max-width: 768px) {
+  .lightbox-prev:hover,
+  .lightbox-next:hover {
+    transform: scale(1.1);
+  }
+}
+
+.lightbox-close {
+  top: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+}
+
+.lightbox-prev { left: 2rem; }
+.lightbox-next { right: 2rem; }
+
+@media (max-width: 768px) {
+  .lightbox-prev, .lightbox-next {
+    bottom: 2rem;
+    top: auto;
+    transform: none;
+  }
+  .lightbox-prev { left: calc(50% - 60px); }
+  .lightbox-next { left: calc(50% + 10px); }
+  .lightbox-close { top: 1rem; right: 1rem; }
+}

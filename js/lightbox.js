@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
       item.addEventListener('click', () => {
         currentGallery = Array.from(portfolioItems).filter(i => !i.classList.contains('hide'));
         currentIndex = currentGallery.indexOf(item);
-        
+
         showImage(item);
         lightbox.classList.add('active');
         lightbox.setAttribute('aria-hidden', 'false');
@@ -102,15 +102,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let scrollCooldown = false;
     lightbox.addEventListener('wheel', (e) => {
       if (!lightbox.classList.contains('active') || scrollCooldown) return;
-      
+
       scrollCooldown = true;
       if (e.deltaY > 0) {
         navigate(1);
       } else if (e.deltaY < 0) {
         navigate(-1);
       }
-      
-      setTimeout(() => { scrollCooldown = false; }, 400); 
+
+      setTimeout(() => { scrollCooldown = false; }, 400);
     }, { passive: true });
   }
 });

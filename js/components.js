@@ -8,12 +8,12 @@
   const navbarHTML = `
 <nav class="navbar" id="navbar" aria-label="Main navigation">
   <div class="container">
-    <a href="/index.html" class="nav-logo" aria-label="Nani Baral — home">NANI.</a>
+    <a href="index.html" class="nav-logo" aria-label="Nani Baral — home">NANI.</a>
     <ul class="nav-links" id="navLinks" role="menubar">
-      <li role="none"><a href="/index.html" role="menuitem" data-page="home">Home</a></li>
-      <li role="none"><a href="/pages/about.html" role="menuitem" data-page="about">About</a></li>
-      <li role="none"><a href="/pages/portfolio.html" role="menuitem" data-page="portfolio">Portfolio</a></li>
-      <li role="none"><a href="/pages/socials.html" role="menuitem" data-page="socials">Socials</a></li>
+      <li role="none"><a href="index.html" role="menuitem" data-page="home">Home</a></li>
+      <li role="none"><a href="about.html" role="menuitem" data-page="about">About</a></li>
+      <li role="none"><a href="portfolio.html" role="menuitem" data-page="portfolio">Portfolio</a></li>
+      <li role="none"><a href="socials.html" role="menuitem" data-page="socials">Socials</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -28,7 +28,7 @@
     <div class="footer-grid">
       <!-- Brand -->
       <div class="footer-brand">
-        <a href="/index.html" class="footer-logo">NANI.</a>
+        <a href="index.html" class="footer-logo">NANI.</a>
         <p>Graphic Designer &amp; Tech Enthusiast crafting bold visuals and digital experiences from Pokhara, Nepal.</p>
         <div class="footer-socials">
           <a href="https://www.instagram.com/nanibaraldesigns" class="footer-social-link" aria-label="Instagram" target="_blank" rel="noopener">Ig</a>
@@ -40,10 +40,10 @@
       <div class="footer-column">
         <h4>Pages</h4>
         <ul>
-          <li><a href="/index.html">Home</a></li>
-          <li><a href="/pages/about.html">About</a></li>
-          <li><a href="/pages/portfolio.html">Portfolio</a></li>
-          <li><a href="/pages/socials.html">Socials</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="socials.html">Socials</a></li>
         </ul>
       </div>
 
@@ -68,28 +68,13 @@
   `;
 
   /**
-   * Determine path prefix based on page depth.
-   */
-  function getBasePath() {
-    const path = window.location.pathname;
-    // Simple check to see if we are in the /pages/ directory
-    if (path.indexOf('/pages/') !== -1 || path.indexOf('\\pages\\') !== -1) return '..';
-    return '.';
-  }
-
-  /**
    * Inject component HTML.
    */
   function loadComponent(placeholderId, html) {
     const el = document.getElementById(placeholderId);
     if (!el) return;
 
-    const base = getBasePath();
-    // Rewrite root-relative paths for subdirectory pages
-    let processedHtml = html.replace(/href="\//g, `href="${base}/`);
-    processedHtml = processedHtml.replace(/src="\//g, `src="${base}/`);
-
-    el.innerHTML = processedHtml;
+    el.innerHTML = html;
 
     // If we just loaded the footer, ensure the year is current
     if (placeholderId === 'footer-placeholder') {
@@ -107,7 +92,7 @@
       const page = link.dataset.page;
       const isActive =
         (page === 'home' && (path.endsWith('/') || path.endsWith('index.html'))) ||
-        (page !== 'home' && path.includes(page));
+        (page !== 'home' && path.includes(page + '.html'));
       link.classList.toggle('active', isActive);
     });
   }

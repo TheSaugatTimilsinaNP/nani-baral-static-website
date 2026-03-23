@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nanibaral.com/sitemap.xml
+Sitemap: https://nanibaral.com.np/sitemap.xml
